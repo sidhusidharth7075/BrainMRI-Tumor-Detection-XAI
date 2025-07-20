@@ -1,0 +1,347 @@
+{% extends "base.html" %}
+
+{% block title %}Brain Tumor Classification - Home{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-lg-8">
+        <!-- Flash Messages -->
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="alert alert-{{ 'danger' if category == 'error' else category }} alert-dismissible fade show" role="alert">
+                        {{ message }}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                    </div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+
+        <!-- Header Section -->
+        <div class="text-center mb-5">
+            <h1 class="display-4 fw-bold text-primary mb-3">
+                <i class="fas fa-brain me-3"></i>
+                Brain Tumor Classification
+            </h1>
+            <p class="lead text-muted">
+                Upload an MRI brain scan image to get instant AI-powered classification and explainable results
+            </p>
+            <div class="row mt-4">
+                <div class="col-md-3">
+                    <div class="text-center">
+                        <i class="fas fa-upload fa-2x text-primary mb-2"></i>
+                        <h6>Upload Image</h6>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="text-center">
+                        <i class="fas fa-brain fa-2x text-primary mb-2"></i>
+                        <h6>AI Analysis</h6>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="text-center">
+                        <i class="fas fa-chart-line fa-2x text-primary mb-2"></i>
+                        <h6>Get Results</h6>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="text-center">
+                        <i class="fas fa-file-pdf fa-2x text-primary mb-2"></i>
+                        <h6>Download Report</h6>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Upload Card -->
+        <div class="card">
+            <div class="card-body p-4">
+                <h4 class="card-title text-center mb-4">
+                    <i class="fas fa-upload me-2"></i>
+                    Upload MRI Brain Scan
+                </h4>
+                
+                <form action="{{ url_for('upload_file') }}" method="POST" enctype="multipart/form-data" id="uploadForm">
+                    <div class="upload-area" id="uploadArea">
+                        <i class="fas fa-cloud-upload-alt fa-3x text-primary mb-3"></i>
+                        <h5>Drag & Drop your MRI image here</h5>
+                        <p class="text-muted">or click to browse files</p>
+                        <input type="file" name="file" id="fileInput" class="d-none" accept="image/*,.png,.jpg,.jpeg,.gif,.bmp,.tiff,.tif,.webp,.svg,.ico,.jfif,.pjpeg,.pjp,.avif,.heic,.heif" required>
+                        <button type="button" class="btn btn-primary" onclick="document.getElementById('fileInput').click()">
+                            <i class="fas fa-folder-open me-2"></i>
+                            Choose File
+                        </button>
+                        <p class="mt-2 mb-0">
+                            <small class="text-muted">
+                                <i class="fas fa-mouse-pointer me-1"></i>
+                                Click anywhere in this area to browse files
+                            </small>
+                        </p>
+                        <div class="mt-3">
+                            <small class="text-muted">
+                                <strong>Supported formats:</strong><br>
+                                PNG, JPG, JPEG, GIF, BMP, TIFF, WEBP, SVG, ICO, JFIF, AVIF, HEIC, HEIF
+                            </small>
+                        </div>
+                    </div>
+                    
+                    <!-- File Preview -->
+                    <div id="filePreview" class="mt-3" style="display: none;">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <img id="previewImage" class="image-preview" alt="Preview">
+                            </div>
+                            <div class="col-md-6">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h6><i class="fas fa-info-circle me-2"></i>File Information</h6>
+                                        <p class="mb-1"><strong>Name:</strong> <span id="fileName"></span></p>
+                                        <p class="mb-1"><strong>Size:</strong> <span id="fileSize"></span></p>
+                                        <p class="mb-1"><strong>Type:</strong> <span id="fileType"></span></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Patient Information -->
+                    <div class="card mt-4">
+                        <div class="card-body">
+                            <h5 class="card-title mb-3">
+                                <i class="fas fa-user me-2"></i>
+                                Patient Information
+                            </h5>
+                            <div class="row">
+                                <div class="col-md-4 mb-3">
+                                    <label for="patient_name" class="form-label">Patient Name</label>
+                                    <input type="text" class="form-control" id="patient_name" name="patient_name" placeholder="Enter patient name">
+                                </div>
+                                <div class="col-md-4 mb-3">
+                                    <label for="patient_id" class="form-label">Patient ID</label>
+                                    <input type="text" class="form-control" id="patient_id" name="patient_id" placeholder="Enter patient ID">
+                                </div>
+                                <div class="col-md-4 mb-3">
+                                    <label for="patient_email" class="form-label">Email (Optional)</label>
+                                    <input type="email" class="form-control" id="patient_email" name="patient_email" placeholder="Enter email address">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Submit Button -->
+                    <div class="text-center mt-4" id="submitSection" style="display: none;">
+                        <button type="submit" class="btn btn-success btn-lg">
+                            <i class="fas fa-play me-2"></i>
+                            Analyze Image
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Loading Section -->
+        <div class="loading text-center mt-4" id="loadingSection">
+            <div class="spinner-border text-primary" role="status">
+                <span class="visually-hidden">Loading...</span>
+            </div>
+            <h5 class="mt-3">Analyzing your image...</h5>
+            <p class="text-muted">This may take a few moments</p>
+            <div class="progress mt-3">
+                <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" style="width: 100%"></div>
+            </div>
+        </div>
+
+        <!-- Features Section -->
+        <div class="row mt-5">
+            <div class="col-md-4 mb-4">
+                <div class="card h-100 text-center">
+                    <div class="card-body">
+                        <i class="fas fa-robot fa-3x text-primary mb-3"></i>
+                        <h5>AI-Powered Analysis</h5>
+                        <p class="text-muted">Advanced deep learning model trained on thousands of MRI scans for accurate classification.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="card h-100 text-center">
+                    <div class="card-body">
+                        <i class="fas fa-eye fa-3x text-primary mb-3"></i>
+                        <h5>Explainable AI</h5>
+                        <p class="text-muted">Grad-CAM visualization shows exactly which regions influenced the model's decision.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="card h-100 text-center">
+                    <div class="card-body">
+                        <i class="fas fa-file-pdf fa-3x text-primary mb-3"></i>
+                        <h5>Detailed Reports</h5>
+                        <p class="text-muted">Generate comprehensive PDF reports with all analysis results and visualizations.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Supported Classes -->
+        <div class="card mt-4">
+            <div class="card-body">
+                <h5 class="card-title text-center mb-4">
+                    <i class="fas fa-tags me-2"></i>
+                    Supported Tumor Classes
+                </h5>
+                <div class="row text-center">
+                    <div class="col-md-3 mb-3">
+                        <span class="class-badge glioma">Glioma</span>
+                    </div>
+                    <div class="col-md-3 mb-3">
+                        <span class="class-badge meningioma">Meningioma</span>
+                    </div>
+                    <div class="col-md-3 mb-3">
+                        <span class="class-badge pituitary">Pituitary</span>
+                    </div>
+                    <div class="col-md-3 mb-3">
+                        <span class="class-badge no-tumor">No Tumor</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const uploadArea = document.getElementById('uploadArea');
+    const fileInput = document.getElementById('fileInput');
+    const filePreview = document.getElementById('filePreview');
+    const submitSection = document.getElementById('submitSection');
+    const loadingSection = document.getElementById('loadingSection');
+    const uploadForm = document.getElementById('uploadForm');
+
+    // Enhanced drag and drop functionality
+    ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+        uploadArea.addEventListener(eventName, preventDefaults, false);
+        document.body.addEventListener(eventName, preventDefaults, false);
+    });
+
+    function preventDefaults(e) {
+        e.preventDefault();
+        e.stopPropagation();
+    }
+
+    ['dragenter', 'dragover'].forEach(eventName => {
+        uploadArea.addEventListener(eventName, highlight, false);
+    });
+
+    ['dragleave', 'drop'].forEach(eventName => {
+        uploadArea.addEventListener(eventName, unhighlight, false);
+    });
+
+    function highlight(e) {
+        uploadArea.classList.add('dragover');
+    }
+
+    function unhighlight(e) {
+        uploadArea.classList.remove('dragover');
+    }
+
+    uploadArea.addEventListener('drop', handleDrop, false);
+
+    function handleDrop(e) {
+        const dt = e.dataTransfer;
+        const files = dt.files;
+        
+        if (files.length > 0) {
+            const file = files[0];
+            
+            // Set the file input to the dropped file
+            const dataTransfer = new DataTransfer();
+            dataTransfer.items.add(file);
+            fileInput.files = dataTransfer.files;
+            
+            handleFile(file);
+        }
+    }
+
+    // File input change
+    fileInput.addEventListener('change', function(e) {
+        if (e.target.files.length > 0) {
+            const file = e.target.files[0];
+            handleFile(file);
+        }
+    });
+
+    // Handle file selection
+    function handleFile(file) {
+        // Validate file type - comprehensive list
+        const allowedTypes = [
+            'image/jpeg', 'image/jpg', 'image/png', 'image/gif', 'image/bmp', 'image/tiff', 'image/tif',
+            'image/webp', 'image/svg+xml', 'image/x-icon', 'image/jfif', 'image/pjpeg', 'image/pjp',
+            'image/avif', 'image/heic', 'image/heif'
+        ];
+        
+        // Also check file extension as fallback
+        const allowedExtensions = ['png', 'jpg', 'jpeg', 'gif', 'bmp', 'tiff', 'tif', 'webp', 'svg', 'ico', 'jfif', 'pjpeg', 'pjp', 'avif', 'heic', 'heif'];
+        const fileExtension = file.name.split('.').pop().toLowerCase();
+        
+        if (!allowedTypes.includes(file.type) && !allowedExtensions.includes(fileExtension)) {
+            alert('Please select a valid image file. Supported formats: PNG, JPG, JPEG, GIF, BMP, TIFF, WEBP, SVG, ICO, JFIF, AVIF, HEIC, HEIF');
+            return;
+        }
+
+        // Validate file size (16MB max)
+        if (file.size > 16 * 1024 * 1024) {
+            alert('File size must be less than 16MB');
+            return;
+        }
+
+        // Display file information
+        document.getElementById('fileName').textContent = file.name;
+        document.getElementById('fileSize').textContent = formatFileSize(file.size);
+        document.getElementById('fileType').textContent = file.type;
+
+        // Show preview
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            document.getElementById('previewImage').src = e.target.result;
+            filePreview.style.display = 'block';
+            submitSection.style.display = 'block';
+        };
+        reader.readAsDataURL(file);
+    }
+
+    // Format file size
+    function formatFileSize(bytes) {
+        if (bytes === 0) return '0 Bytes';
+        const k = 1024;
+        const sizes = ['Bytes', 'KB', 'MB', 'GB'];
+        const i = Math.floor(Math.log(bytes) / Math.log(k));
+        return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
+    }
+
+    // Make entire upload area clickable
+    uploadArea.addEventListener('click', function(e) {
+        // Don't trigger if clicking on the button or input
+        if (e.target.tagName !== 'BUTTON' && e.target.tagName !== 'INPUT') {
+            fileInput.click();
+        }
+    });
+
+    // Form submission
+    uploadForm.addEventListener('submit', function(e) {
+        loadingSection.style.display = 'block';
+        submitSection.style.display = 'none';
+    });
+
+    // Auto-generate patient ID if empty
+    document.getElementById('patient_id').addEventListener('blur', function() {
+        if (!this.value) {
+            const timestamp = Date.now().toString(36).toUpperCase();
+            this.value = `PT${timestamp}`;
+        }
+    });
+});
+</script>
+{% endblock %} 

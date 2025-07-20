@@ -1,0 +1,66 @@
+# Brain Tumor Classification AI - Requirements
+# Core dependencies for the Flask web application and AI model
+
+# Web Framework
+Flask==2.3.3
+Werkzeug==2.3.7
+
+# Deep Learning & AI
+tensorflow==2.13.0
+keras==2.13.1
+numpy==1.24.3
+scipy==1.11.1
+
+# Image Processing
+opencv-python==4.8.0.76
+Pillow==10.0.0
+matplotlib==3.7.2
+
+# PDF Generation
+reportlab==4.0.4
+
+# Data Processing
+pandas==2.0.3
+scikit-learn==1.3.0
+
+# Utilities
+python-dateutil==2.8.2
+uuid==1.30
+
+# Security
+cryptography==41.0.3
+
+# Development & Testing (Optional)
+# Uncomment for development environment
+# pytest==7.4.0
+# pytest-flask==1.2.0
+# flake8==6.0.0
+# black==23.7.0
+
+# Additional Dependencies
+requests==2.31.0
+urllib3==2.0.4
+certifi==2023.7.22
+
+# System Dependencies
+# Note: These may need to be installed separately on some systems
+# - libgl1-mesa-glx (for OpenCV on Linux)
+# - libglib2.0-0 (for OpenCV on Linux)
+# - libsm6 (for OpenCV on Linux)
+# - libxext6 (for OpenCV on Linux)
+# - libxrender-dev (for OpenCV on Linux)
+
+# Platform-specific notes:
+# Windows: Most packages install automatically
+# macOS: May need to install additional system libraries
+# Linux: May need to install OpenCV system dependencies
+
+# Installation command:
+# pip install -r requirements.txt
+
+# For GPU support (optional):
+# pip install tensorflow-gpu==2.13.0
+
+# For development environment:
+# pip install -r requirements.txt
+# pip install pytest pytest-flask flake8 black 

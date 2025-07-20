@@ -1,0 +1,258 @@
+{% extends "base.html" %}
+
+{% block title %}Analysis Results - Brain Tumor Classification{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-lg-10">
+        <!-- Header -->
+        <div class="text-center mb-4">
+            <h2 class="display-5 fw-bold text-primary">
+                <i class="fas fa-chart-line me-3"></i>
+                Analysis Results
+            </h2>
+            <p class="lead text-muted">AI-powered brain tumor classification with explainable visualizations</p>
+        </div>
+
+        <!-- Patient Information Card -->
+        <div class="card mb-4">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <h5><i class="fas fa-user me-2"></i>Patient Information</h5>
+                        <p><strong>Patient ID:</strong> {{ patient_info.id or 'Not provided' }}</p>
+                        <p><strong>Analysis Date:</strong> {{ session_data.timestamp.split('T')[0] if session_data and session_data.timestamp else 'N/A' }}</p>
+                    </div>
+                    <div class="col-md-6 text-md-end">
+                        <h5><i class="fas fa-brain me-2"></i>Prediction Result</h5>
+                        <span class="class-badge {{ prediction.class.lower().replace(' ', '-') }} fs-5">
+                            {{ prediction.class.title() }}
+                        </span>
+                        <p class="mt-2"><strong>Confidence:</strong> {{ "%.2f"|format(prediction.confidence * 100) }}%</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Results Section -->
+        <div class="row">
+            <!-- Confidence Scores -->
+            <div class="col-lg-4 mb-4">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h5 class="card-title">
+                            <i class="fas fa-percentage me-2"></i>
+                            Confidence Scores
+                        </h5>
+                        <div class="mt-3">
+                            {% set class_names = ['Glioma', 'Meningioma', 'No Tumor', 'Pituitary'] %}
+                            {% for i in range(prediction.all_scores|length) %}
+                            <div class="mb-3">
+                                <div class="d-flex justify-content-between mb-1">
+                                    <span class="fw-bold">{{ class_names[i] }}</span>
+                                    <span>{{ "%.2f"|format(prediction.all_scores[i] * 100) }}%</span>
+                                </div>
+                                <div class="progress">
+                                    <div class="progress-bar {% if class_names[i].lower().replace(' ', '-') == prediction.class.lower().replace(' ', '-') %}bg-success{% endif %}" 
+                                         role="progressbar" 
+                                         style="width: {{ prediction.all_scores[i] * 100 }}%">
+                                    </div>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Grad-CAM Visualization -->
+            <div class="col-lg-8 mb-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">
+                            <i class="fas fa-eye me-2"></i>
+                            Grad-CAM Visualization
+                        </h5>
+                        <p class="text-muted">Heatmap showing regions that influenced the model's decision</p>
+                        
+                        <div class="row">
+                            <div class="col-md-6 text-center mb-3">
+                                <img src="{{ url_for('static', filename='uploads/' + original_image) }}" 
+                                     class="img-fluid rounded" 
+                                     alt="Original Image"
+                                     style="max-height: 200px;">
+                                <p class="mt-2 fw-bold">Original Image</p>
+                            </div>
+                            <div class="col-md-6 text-center mb-3">
+                                <img src="{{ url_for('static', filename='uploads/' + gradcam_image) }}" 
+                                     class="img-fluid rounded" 
+                                     alt="Grad-CAM Heatmap"
+                                     style="max-height: 200px;">
+                                <p class="mt-2 fw-bold">Grad-CAM Heatmap</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Combined Visualization -->
+        <div class="card mb-4">
+            <div class="card-body">
+                <h5 class="card-title">
+                    <i class="fas fa-images me-2"></i>
+                    Complete Analysis View
+                </h5>
+                <div class="row">
+                    <div class="col-md-6 text-center mb-3">
+                        <img src="{{ url_for('static', filename='uploads/' + original_image) }}" 
+                             class="img-fluid rounded" 
+                             alt="Original MRI"
+                             style="max-width: 100%; height: auto;">
+                        <p class="mt-2 fw-bold">Original MRI Image</p>
+                    </div>
+                    <div class="col-md-6 text-center mb-3">
+                        <img src="{{ url_for('static', filename='uploads/' + gradcam_image) }}" 
+                             class="img-fluid rounded" 
+                             alt="Grad-CAM Analysis"
+                             style="max-width: 100%; height: auto;">
+                        <p class="mt-2 fw-bold">Grad-CAM Analysis</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-body text-center">
+                        <h5 class="card-title mb-4">
+                            <i class="fas fa-download me-2"></i>
+                            Download Results
+                        </h5>
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <a href="{{ url_for('download_report') }}" 
+                                   class="btn btn-primary btn-lg w-100">
+                                    <i class="fas fa-file-pdf me-2"></i>
+                                    Download PDF Report
+                                </a>
+                                <small class="text-muted d-block mt-2">
+                                    Comprehensive report with all analysis details
+                                </small>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <a href="{{ url_for('index') }}" 
+                                   class="btn btn-outline-primary btn-lg w-100">
+                                    <i class="fas fa-upload me-2"></i>
+                                    Analyze Another Image
+                                </a>
+                                <small class="text-muted d-block mt-2">
+                                    Upload a new MRI scan for analysis
+                                </small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Technical Details -->
+        <div class="row mt-4">
+            <div class="col-md-6 mb-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h6 class="card-title">
+                            <i class="fas fa-cogs me-2"></i>
+                            Technical Details
+                        </h6>
+                        <ul class="list-unstyled">
+                            <li><strong>Model:</strong> Convolutional Neural Network (CNN)</li>
+                            <li><strong>Framework:</strong> TensorFlow/Keras</li>
+                            <li><strong>Input Size:</strong> 150x150 pixels</li>
+                            <li><strong>Explainability:</strong> Grad-CAM</li>
+                            <li><strong>Accuracy:</strong> 94% (validation)</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 mb-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h6 class="card-title">
+                            <i class="fas fa-info-circle me-2"></i>
+                            About Grad-CAM
+                        </h6>
+                        <p class="small text-muted">
+                            Grad-CAM (Gradient-weighted Class Activation Mapping) visualizes the regions 
+                            in the input image that were most important for the model's classification decision. 
+                            Red areas indicate high influence, while blue areas show low influence.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Disclaimer -->
+        <div class="alert alert-warning" role="alert">
+            <h6 class="alert-heading">
+                <i class="fas fa-exclamation-triangle me-2"></i>
+                Important Disclaimer
+            </h6>
+            <p class="mb-0">
+                This analysis is for research and educational purposes only. The results should not be used 
+                as the sole basis for clinical decision-making. Always consult with qualified medical 
+                professionals for proper diagnosis and treatment.
+            </p>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Animate confidence bars
+    const progressBars = document.querySelectorAll('.progress-bar');
+    progressBars.forEach(bar => {
+        const width = bar.style.width;
+        bar.style.width = '0%';
+        setTimeout(() => {
+            bar.style.width = width;
+        }, 500);
+    });
+
+    // Add click handlers for image zoom
+    const images = document.querySelectorAll('.img-fluid');
+    images.forEach(img => {
+        img.addEventListener('click', function() {
+            // Create modal for image zoom
+            const modal = document.createElement('div');
+            modal.className = 'modal fade';
+            modal.innerHTML = `
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Image View</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                        </div>
+                        <div class="modal-body text-center">
+                            <img src="${this.src}" class="img-fluid" alt="Enlarged view">
+                        </div>
+                    </div>
+                </div>
+            `;
+            document.body.appendChild(modal);
+            const modalInstance = new bootstrap.Modal(modal);
+            modalInstance.show();
+            
+            // Clean up modal after hiding
+            modal.addEventListener('hidden.bs.modal', function() {
+                document.body.removeChild(modal);
+            });
+        });
+    });
+});
+</script>
+{% endblock %} 

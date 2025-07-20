@@ -1,0 +1,306 @@
+{% extends "base.html" %}
+
+{% block title %}About - Brain Tumor Classification AI{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-lg-10">
+        <!-- Header -->
+        <div class="text-center mb-5">
+            <h1 class="display-4 fw-bold text-primary">
+                <i class="fas fa-brain me-3"></i>
+                About Brain Tumor Classification AI
+            </h1>
+            <p class="lead text-muted">Advanced AI-powered brain tumor detection and classification system</p>
+        </div>
+
+        <!-- Mission Statement -->
+        <div class="card mb-5">
+            <div class="card-body">
+                <h2 class="card-title text-primary">
+                    <i class="fas fa-bullseye me-2"></i>
+                    Our Mission
+                </h2>
+                <p class="card-text fs-5">
+                    To provide accurate, reliable, and explainable AI-powered brain tumor classification 
+                    for medical research and educational purposes. Our system combines cutting-edge deep 
+                    learning technology with transparent explainability to assist medical professionals 
+                    in understanding AI decision-making processes.
+                </p>
+            </div>
+        </div>
+
+        <!-- Technology Overview -->
+        <div class="row mb-5">
+            <div class="col-md-6 mb-4">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h3 class="card-title text-primary">
+                            <i class="fas fa-cogs me-2"></i>
+                            Technology Stack
+                        </h3>
+                        <ul class="list-unstyled">
+                            <li class="mb-2">
+                                <i class="fas fa-check text-success me-2"></i>
+                                <strong>Deep Learning:</strong> Convolutional Neural Networks (CNN)
+                            </li>
+                            <li class="mb-2">
+                                <i class="fas fa-check text-success me-2"></i>
+                                <strong>Framework:</strong> TensorFlow/Keras
+                            </li>
+                            <li class="mb-2">
+                                <i class="fas fa-check text-success me-2"></i>
+                                <strong>Explainability:</strong> Grad-CAM Visualization
+                            </li>
+                            <li class="mb-2">
+                                <i class="fas fa-check text-success me-2"></i>
+                                <strong>Web Framework:</strong> Flask
+                            </li>
+                            <li class="mb-2">
+                                <i class="fas fa-check text-success me-2"></i>
+                                <strong>Frontend:</strong> Bootstrap 5, HTML5, CSS3
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 mb-4">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h3 class="card-title text-primary">
+                            <i class="fas fa-chart-line me-2"></i>
+                            Model Performance
+                        </h3>
+                        <ul class="list-unstyled">
+                            <li class="mb-2">
+                                <i class="fas fa-star text-warning me-2"></i>
+                                <strong>Accuracy:</strong> 94% (Validation Set)
+                            </li>
+                            <li class="mb-2">
+                                <i class="fas fa-star text-warning me-2"></i>
+                                <strong>Classes:</strong> 4 Tumor Types
+                            </li>
+                            <li class="mb-2">
+                                <i class="fas fa-star text-warning me-2"></i>
+                                <strong>Input Size:</strong> 150x150 pixels
+                            </li>
+                            <li class="mb-2">
+                                <i class="fas fa-star text-warning me-2"></i>
+                                <strong>Processing Time:</strong> < 5 seconds
+                            </li>
+                            <li class="mb-2">
+                                <i class="fas fa-star text-warning me-2"></i>
+                                <strong>Explainability:</strong> Real-time Grad-CAM
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tumor Types -->
+        <div class="card mb-5">
+            <div class="card-body">
+                <h2 class="card-title text-primary">
+                    <i class="fas fa-microscope me-2"></i>
+                    Tumor Types We Classify
+                </h2>
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <div class="border rounded p-3">
+                            <h4 class="text-danger">
+                                <i class="fas fa-exclamation-triangle me-2"></i>
+                                Glioma
+                            </h4>
+                            <p class="text-muted">
+                                Primary brain tumors that originate from glial cells. They can be 
+                                benign or malignant and are the most common type of primary brain tumor.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <div class="border rounded p-3">
+                            <h4 class="text-warning">
+                                <i class="fas fa-circle me-2"></i>
+                                Meningioma
+                            </h4>
+                            <p class="text-muted">
+                                Tumors that arise from the meninges, the protective membranes 
+                                covering the brain and spinal cord. Usually benign but can cause 
+                                significant symptoms.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <div class="border rounded p-3">
+                            <h4 class="text-success">
+                                <i class="fas fa-check-circle me-2"></i>
+                                No Tumor
+                            </h4>
+                            <p class="text-muted">
+                                Normal brain tissue with no detectable tumor or abnormality. 
+                                Important for ruling out false positives.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <div class="border rounded p-3">
+                            <h4 class="text-info">
+                                <i class="fas fa-dot-circle me-2"></i>
+                                Pituitary
+                            </h4>
+                            <p class="text-muted">
+                                Tumors that develop in the pituitary gland, a small gland at the 
+                                base of the brain. Can affect hormone production and vision.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- How It Works -->
+        <div class="card mb-5">
+            <div class="card-body">
+                <h2 class="card-title text-primary">
+                    <i class="fas fa-play-circle me-2"></i>
+                    How It Works
+                </h2>
+                <div class="row">
+                    <div class="col-md-3 text-center mb-4">
+                        <div class="bg-primary text-white rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 80px; height: 80px;">
+                            <i class="fas fa-upload fa-2x"></i>
+                        </div>
+                        <h5>1. Upload Image</h5>
+                        <p class="text-muted">Upload your MRI brain scan in JPG or PNG format</p>
+                    </div>
+                    <div class="col-md-3 text-center mb-4">
+                        <div class="bg-primary text-white rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 80px; height: 80px;">
+                            <i class="fas fa-cogs fa-2x"></i>
+                        </div>
+                        <h5>2. AI Processing</h5>
+                        <p class="text-muted">Our CNN model analyzes the image and extracts features</p>
+                    </div>
+                    <div class="col-md-3 text-center mb-4">
+                        <div class="bg-primary text-white rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 80px; height: 80px;">
+                            <i class="fas fa-chart-bar fa-2x"></i>
+                        </div>
+                        <h5>3. Classification</h5>
+                        <p class="text-muted">Get tumor type prediction with confidence scores</p>
+                    </div>
+                    <div class="col-md-3 text-center mb-4">
+                        <div class="bg-primary text-white rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 80px; height: 80px;">
+                            <i class="fas fa-eye fa-2x"></i>
+                        </div>
+                        <h5>4. Visualization</h5>
+                        <p class="text-muted">View Grad-CAM explanation of AI decision-making</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Features -->
+        <div class="row mb-5">
+            <div class="col-md-4 mb-4">
+                <div class="card h-100 text-center">
+                    <div class="card-body">
+                        <i class="fas fa-shield-alt fa-3x text-primary mb-3"></i>
+                        <h4>Secure & Private</h4>
+                        <p class="text-muted">
+                            Your medical images are processed securely and never stored permanently. 
+                            All data is handled with strict privacy protocols.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="card h-100 text-center">
+                    <div class="card-body">
+                        <i class="fas fa-lightbulb fa-3x text-primary mb-3"></i>
+                        <h4>Explainable AI</h4>
+                        <p class="text-muted">
+                            Our Grad-CAM technology shows exactly which regions of the brain 
+                            influenced the AI's decision, providing transparency and trust.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="card h-100 text-center">
+                    <div class="card-body">
+                        <i class="fas fa-file-pdf fa-3x text-primary mb-3"></i>
+                        <h4>Detailed Reports</h4>
+                        <p class="text-muted">
+                            Generate comprehensive PDF reports with all analysis details, 
+                            confidence scores, and visualizations for your records.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Team/Research -->
+        <div class="card mb-5">
+            <div class="card-body">
+                <h2 class="card-title text-primary">
+                    <i class="fas fa-users me-2"></i>
+                    Research & Development
+                </h2>
+                <p class="card-text">
+                    This brain tumor classification system was developed as part of advanced research 
+                    in medical AI and computer vision. Our team combines expertise in deep learning, 
+                    medical imaging, and software engineering to create reliable and explainable 
+                    AI solutions for healthcare applications.
+                </p>
+                <div class="row mt-4">
+                    <div class="col-md-6">
+                        <h5><i class="fas fa-graduation-cap me-2"></i>Research Areas</h5>
+                        <ul class="list-unstyled">
+                            <li><i class="fas fa-arrow-right text-primary me-2"></i>Medical Image Analysis</li>
+                            <li><i class="fas fa-arrow-right text-primary me-2"></i>Explainable AI</li>
+                            <li><i class="fas fa-arrow-right text-primary me-2"></i>Computer Vision</li>
+                            <li><i class="fas fa-arrow-right text-primary me-2"></i>Healthcare AI</li>
+                        </ul>
+                    </div>
+                    <div class="col-md-6">
+                        <h5><i class="fas fa-tools me-2"></i>Technologies</h5>
+                        <ul class="list-unstyled">
+                            <li><i class="fas fa-arrow-right text-primary me-2"></i>Deep Learning</li>
+                            <li><i class="fas fa-arrow-right text-primary me-2"></i>TensorFlow/Keras</li>
+                            <li><i class="fas fa-arrow-right text-primary me-2"></i>Grad-CAM</li>
+                            <li><i class="fas fa-arrow-right text-primary me-2"></i>Web Development</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Disclaimer -->
+        <div class="alert alert-warning" role="alert">
+            <h4 class="alert-heading">
+                <i class="fas fa-exclamation-triangle me-2"></i>
+                Important Disclaimer
+            </h4>
+            <p class="mb-0">
+                This AI system is designed for research and educational purposes only. It should not be used 
+                as a substitute for professional medical diagnosis, treatment, or advice. Always consult with 
+                qualified healthcare professionals for medical decisions. The accuracy of predictions may vary 
+                and should be validated by medical experts.
+            </p>
+        </div>
+
+        <!-- Contact -->
+        <div class="text-center">
+            <h3 class="text-primary mb-3">Get in Touch</h3>
+            <p class="text-muted mb-4">
+                For questions about our research, technical details, or collaboration opportunities, 
+                please reach out to our team.
+            </p>
+            <a href="{{ url_for('index') }}" class="btn btn-primary btn-lg">
+                <i class="fas fa-upload me-2"></i>
+                Try the System
+            </a>
+        </div>
+    </div>
+</div>
+{% endblock %} 
