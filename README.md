@@ -12,10 +12,10 @@
 
 A comprehensive web application that uses deep learning to classify brain tumors from MRI scans with real-time Grad-CAM visualizations for explainable AI.
 
-[![GitHub stars](https://img.shields.io/github/stars/yourusername/brain-tumor-classification?style=social&label=Star)](https://github.com/yourusername/brain-tumor-classification)
-[![GitHub forks](https://img.shields.io/github/forks/yourusername/brain-tumor-classification?style=social&label=Fork)](https://github.com/yourusername/brain-tumor-classification)
-[![GitHub issues](https://img.shields.io/github/issues/yourusername/brain-tumor-classification?style=flat-square&color=blue)](https://github.com/yourusername/brain-tumor-classification/issues)
-[![GitHub pull requests](https://img.shields.io/github/issues-pr/yourusername/brain-tumor-classification?style=flat-square&color=green)](https://github.com/yourusername/brain-tumor-classification/pulls)
+[![GitHub stars](https://img.shields.io/github/stars/yourusername/brain-tumor-classification?style=social&label=Star)](https://github.com/sidhusidharth7075/BrainMRI-Tumor-Detection-XAI.git)
+[![GitHub forks](https://img.shields.io/github/forks/yourusername/brain-tumor-classification?style=social&label=Fork)](https://github.com/sidhusidharth7075/BrainMRI-Tumor-Detection-XAI.git)
+[![GitHub issues](https://img.shields.io/github/issues/yourusername/brain-tumor-classification?style=flat-square&color=blue)](https://github.com/sidhusidharth7075/BrainMRI-Tumor-Detection-XAI.git/issues)
+[![GitHub pull requests](https://img.shields.io/github/issues-pr/yourusername/brain-tumor-classification?style=flat-square&color=green)](https://github.com/sidhusidharth7075/BrainMRI-Tumor-Detection-XAI.git/pulls)
 
 </div>
 
@@ -316,8 +316,6 @@ brain-tumor-classification/
 ├── requirements.txt           # Python dependencies
 ├── README.md                  # This file
 ├── static/                    # Static assets
-│   ├── css/                   # Stylesheets
-│   ├── js/                    # JavaScript files
 │   └── uploads/               # Uploaded images
 ├── templates/                 # HTML templates
 │   ├── base.html             # Base template
@@ -515,7 +513,7 @@ For inquiries or collaboration opportunities, reach out via:
 
 **Made with ❤️ for Medical AI Research**
 
-[![GitHub stars](https://img.shields.io/github/stars/yourusername/brain-tumor-classification?style=social&label=Star)](https://github.com/yourusername/brain-tumor-classification)
-[![GitHub forks](https://img.shields.io/github/forks/yourusername/brain-tumor-classification?style=social&label=Fork)](https://github.com/yourusername/brain-tumor-classification)
+[![GitHub stars](https://img.shields.io/github/stars/yourusername/brain-tumor-classification?style=social&label=Star)](https://github.com/sidhusidharth7075/BrainMRI-Tumor-Detection-XAI.git)
+[![GitHub forks](https://img.shields.io/github/forks/yourusername/brain-tumor-classification?style=social&label=Fork)](https://github.com/sidhusidharth7075/BrainMRI-Tumor-Detection-XAI.git)
 
 </div> 
