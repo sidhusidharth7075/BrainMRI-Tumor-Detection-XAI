@@ -29,6 +29,17 @@ A comprehensive web application that uses deep learning to classify brain tumors
 
 </div>
 
+<div align="center">
+
+**Download Dataset Here:**
+
+[![Dataset Link](https://img.shields.io/badge/Dataset-Kaggle-blue?style=for-the-badge&logo=kaggle&logoColor=white)](https://www.kaggle.com/datasets/masoudnickparvar/brain-tumor-mri-dataset)
+
+*Click the badge above to view/download the Dataset from Kaggle*
+
+</div>
+
+
 ## 📋 Table of Contents
 
 - [Features](#-features)
