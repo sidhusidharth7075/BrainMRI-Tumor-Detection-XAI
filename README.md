@@ -93,10 +93,7 @@ A comprehensive web application that uses deep learning to classify brain tumors
 
 ![Results Page](Results%20Page.png)
 
-#### 🔍 Grad-CAM Visualization
-**Explainable AI heatmaps**
 
-![Grad-CAM](https://via.placeholder.com/400x250/8b5cf6/ffffff?text=Grad-CAM+Heatmap)
 
 </div>
 
@@ -106,7 +103,7 @@ A comprehensive web application that uses deep learning to classify brain tumors
 
 **Download a sample PDF report to see the comprehensive analysis output:**
 
-[![PDF Report](https://img.shields.io/badge/PDF-Report-red?style=for-the-badge&logo=adobe-acrobat-reader&logoColor=white)](brain_tumor_report_ (2).pdf)
+![PDF Report](https://img.shields.io/badge/PDF-Report-red?style=for-the-badge&logo=adobe-acrobat-reader&logoColor=white)
 
 *Click the badge above to view/download the sample PDF report*
 
