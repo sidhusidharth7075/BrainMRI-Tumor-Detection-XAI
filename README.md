@@ -19,6 +19,16 @@ A comprehensive web application that uses deep learning to classify brain tumors
 
 </div>
 
+<div align="center">
+
+**Download model Here:**
+
+[![Model Link](https://img.shields.io/badge/Model-Link-green?style=for-the-badge&logo=adobe-acrobat-reader&logoColor=white)](https://drive.google.com/drive/folders/1R1K9VIF3MQRvUPGVRfwHtwVp909hU9Yc?usp=sharing)
+
+*Click the badge above to view/download the Model*
+
+</div>
+
 ## 📋 Table of Contents
 
 - [Features](#-features)
