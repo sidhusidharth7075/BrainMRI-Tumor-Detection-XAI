@@ -1,6 +1,6 @@
 <div align="center">
 
-# 🧠 Brain Tumor Classification AI
+# 🧠 Brain Tumor Classification XAI
 
 [![Python](https://img.shields.io/badge/Python-3.8+-blue.svg?style=for-the-badge&logo=python&logoColor=white)](https://www.python.org/downloads/)
 [![TensorFlow](https://img.shields.io/badge/TensorFlow-2.x-orange.svg?style=for-the-badge&logo=tensorflow&logoColor=white)](https://tensorflow.org/)
