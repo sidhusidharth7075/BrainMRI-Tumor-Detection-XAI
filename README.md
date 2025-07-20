@@ -103,7 +103,7 @@ A comprehensive web application that uses deep learning to classify brain tumors
 
 **Download a sample PDF report to see the comprehensive analysis output:**
 
-![PDF Report](https://img.shields.io/badge/PDF-Report-red?style=for-the-badge&logo=adobe-acrobat-reader&logoColor=white)
+[![PDF Report](https://img.shields.io/badge/PDF-Report-red?style=for-the-badge&logo=adobe-acrobat-reader&logoColor=white)](https://drive.google.com/file/d/1v0nZz9dCmy5dc2uo52-8ulMOcJer7Wjz/view?usp=sharing)
 
 *Click the badge above to view/download the sample PDF report*
 
