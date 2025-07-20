@@ -311,7 +311,8 @@ Health check endpoint
 ```
 brain-tumor-classification/
 ├── app.py                      # Main Flask application
-├── best_model.h5              # Trained CNN model
+├── model/
+    ├── best_model.h5              # Trained CNN model
 ├── requirements.txt           # Python dependencies
 ├── README.md                  # This file
 ├── static/                    # Static assets
