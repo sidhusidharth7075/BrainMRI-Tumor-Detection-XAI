@@ -486,25 +486,7 @@ python -c "import tensorflow as tf; print(tf.__version__)"
 
 </div>
 
-## 🔮 Future Enhancements
 
-<div align="center">
-
-### 🚀 Roadmap
-
-
-
-| Enhancement | Priority | Status | Timeline |
-|:-----------:|:--------:|:------:|:--------:|
-| 🎥 **Real-time Video Analysis** | High | 🔄 Planned | Q2 2024 |
-| 🎯 **3D MRI Support** | Medium | 🔄 Planned | Q3 2024 |
-| 🔗 **Multi-modal Fusion** | High | 🔄 Planned | Q4 2024 |
-| 🌐 **Federated Learning** | Medium | 🔄 Planned | Q1 2025 |
-| 📱 **Mobile App** | Medium | 🔄 Planned | Q2 2025 |
-| ☁️ **Cloud Deployment** | High | 🔄 Planned | Q3 2024 |
-| 🔍 **Advanced XAI Methods** | Low | 🔄 Planned | Q4 2025 |
-| 🏥 **Clinical Validation** | High | 🔄 Planned | Q2 2025 |
-</div>
 </div>
 
 ---
